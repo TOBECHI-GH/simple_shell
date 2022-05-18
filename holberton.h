@@ -13,7 +13,7 @@
 #include <signal.h>
 #include <limits.h>
 
-/* ERRORS */
+/* For ERRORS */
 #define BUFSIZE 256
 #define ENOSTRING 1106
 #define EILLEGAL 227
@@ -24,9 +24,9 @@
 extern char **environ;
 
 /**
- * struct linkedList - linked list data structure
- * @string: environ variable path name
- * @next: pointer to next node
+ * struct linkedList - this is the linked list data structure
+ * @string: the environ variable path name
+ * @next: the pointer to next node
  */
 typedef struct linkedList
 {
@@ -39,12 +39,12 @@ typedef struct linkedList
  * @env: linked list of local env variables
  * @envList: array of env variables to put into execve
  * @args: array of argument strings
- * @buffer: string buffer of user input
+ * @buffer: this string buffer of user input
  * @path: array of $PATH locations
- * @fullPath: string of path with correct prepended $PATH
+ * @fullPath: this is string of path with correct prepended $PATH
  * @shellName: name of shell (argv[0])
  * @lineCounter: counter of lines users have entered
- * @errorStatus: error status of last child process
+ * @errorStatus: the error status of last child process
  */
 typedef struct configurations
 {
@@ -60,9 +60,9 @@ typedef struct configurations
 } config;
 
 /**
- * struct builtInCommands - commands and functions associated with it
- * @command: input command
- * @func: output function
+ * struct builtInCommands - the commands and functions associated with it
+ * @command: the input command
+ * @func: the output function
  */
 typedef struct builtInCommands
 {
@@ -165,10 +165,10 @@ int searchNode(linked_l *head, char *str);
 size_t list_len(linked_l *h);
 
 /* llfuncs2 */
-int deleteNodeAtIndex(linked_l **head, unsigned int index);
-linked_l *generateLinkedList(char **array);
-linked_l *addNodeAtIndex(linked_l **head, int index, char *str);
-char *getNodeAtIndex(linked_l *head, unsigned int index);
+int deleteNodeAtIndex(linked__l **head, unsigned int index);
+linked__l *generateLinkedList(char **array);
+linked__l *addNodeAtIndex(linked__l **head, int index, char *str);
+char *getNodeAtIndex(linked__l *head, unsigned int index);
 
 /* welcome */
 void welcome_screen_1(void);
@@ -182,6 +182,6 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 void freeMembers(config *build);
 void freeArgsAndBuffer(config *build);
 void freeArgs(char **args);
-void freeList(linked_l *head);
+void freeList(linked__l *head);
 
 #endif
