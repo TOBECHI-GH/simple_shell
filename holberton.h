@@ -24,50 +24,50 @@
 extern char **environ;
 
 /**
- * struct linkedList - this is the linked list data structure
- * @string: the environ variable path name
- * @next: the pointer to next node
- */
+* struct linkedList - this is the linked list data structure
+* @string: the environ variable path name
+* @next: the pointer to next node
+*/
 typedef struct linkedList
 {
-	char *string;
-	struct linkedList *next;
+char *string;
+struct linkedList *next;
 } linked_l;
 
 /**
- * struct configurations - configuration of build settings
- * @env: linked list of local env variables
- * @envList: array of env variables to put into execve
- * @args: array of argument strings
- * @buffer: this string buffer of user input
- * @path: array of $PATH locations
- * @fullPath: this is string of path with correct prepended $PATH
- * @shellName: name of shell (argv[0])
- * @lineCounter: counter of lines users have entered
- * @errorStatus: the error status of last child process
- */
+* struct configurations - configuration of build settings
+* @env: linked list of local env variables
+* @envList: array of env variables to put into execve
+* @args: array of argument strings
+* @buffer: this string buffer of user input
+* @path: array of $PATH locations
+* @fullPath: this is string of path with correct prepended $PATH
+* @shellName: name of shell (argv[0])
+* @lineCounter: counter of lines users have entered
+* @errorStatus: the error status of last child process
+*/
 typedef struct configurations
 {
-	linked_l *env;
-	char **envList;
-	char **args;
-	char *buffer;
-	char *path;
-	char *fullPath;
-	char *shellName;
-	unsigned int lineCounter;
-	int errorStatus;
+linked_l *env;
+char **envList;
+char **args;
+char *buffer;
+char *path;
+char *fullPath;
+char *shellName;
+unsigned int lineCounter;
+int errorStatus;
 } config;
 
 /**
- * struct builtInCommands - the commands and functions associated with it
- * @command: the input command
- * @func: the output function
- */
+* struct builtInCommands - the commands and functions associated with it
+* @command: the input command
+* @func: the output function
+*/
 typedef struct builtInCommands
 {
-	char *command;
-	int (*func)(config *build);
+char *command;
+int (*func)(config *build);
 } type_b;
 
 /* main */
