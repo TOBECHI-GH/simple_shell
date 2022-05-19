@@ -88,4 +88,3 @@ void _unsetenv(char **p, char **myenv, int *e, int loop, char *v[])
 	else
 		_put_err(p, loop, 5, v);
 }
-
