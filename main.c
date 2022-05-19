@@ -25,14 +25,14 @@ return (0);
 */
 config *configInit(config *build)
 {
-build->env = generateLinkedList(environ);
-build->envList = NULL;
-build->args = NULL;
-build->buffer = NULL;
-build->path = _getenv("PATH", environ);
-build->fullPath = NULL;
-build->lineCounter = 0;
-build->shellName = NULL;
-build->errorStatus = 0;
-return (build);
+	build->env = generateLinkedList(environ);
+	build->envList = NULL;
+	build->args = NULL;
+	build->buffer = NULL;
+	build->path = _getenv("PATH", environ);
+	build->fullPath = NULL;
+	build->lineCounter = 0;
+	build->shellName = NULL;
+	build->errorStatus = 0;
+	return (build);
 }

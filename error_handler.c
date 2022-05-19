@@ -6,29 +6,29 @@
 */
 void errorHandler(config *build)
 {
-register int len;
-static char error[BUFSIZE];
-char *ptr, *alpha;
+    register int len;
+    static char error[BUFSIZE];
+    char *ptr, *alpha;
 
-alpha = itoa(build->lineCounter);
-_strcat(error, build->shellName);
-_strcat(error, ": ");
-_strcat(error, alpha);
-_strcat(error, ": ");
-_strcat(error, build->args[0]);
-_strcat(error, getErrorMessage());
-if (build->args[1])
-{
-if (errno != EBADCD)
-_strcat(error, ": ");
-_strcat(error, build->args[1]);
-}
-_strcat(error, "\n");
-ptr = _strchr(error, '\n');
-len = ptr - error;
-write(STDERR_FILENO, error, len + 1);
-free(alpha);
-insertNullByte(error, 0);
+    alpha = itoa(build->lineCounter);
+    _strcat(error, build->shellName);
+    _strcat(error, ": ");
+    _strcat(error, alpha);
+    _strcat(error, ": ");
+    _strcat(error, build->args[0]);
+    _strcat(error, getErrorMessage());
+    if (build->args[1])
+    {
+    if (errno != EBADCD)
+    _strcat(error, ": ");
+    _strcat(error, build->args[1]);
+    }
+    _strcat(error, "\n");
+    ptr = _strchr(error, '\n');
+    len = ptr - error;
+    write(STDERR_FILENO, error, len + 1);
+    free(alpha);
+    insertNullByte(error, 0);
 }
 
 /**
@@ -37,35 +37,35 @@ insertNullByte(error, 0);
 */
 char *getErrorMessage(void)
 {
-char *str_;
+    char *str_;
 
-switch (errno)
-{
-case EBADCD:
-str_ = ": can't cd to ";
-break;
-case ENOENT:
-str_ = ": not found";
-break;
-case ENOSTRING:
-str_ = ": bad variable name";
-break;
-case EILLEGAL:
-str_ = ": Illegal number";
-break;
-case EWSIZE:
-str_ = ": invalid number of arguments";
-break;
-case ENOBUILTIN:
-str_ = ": type help for a list of built-ins";
-break;
-case EACCES:
-str_ = ": Permission denied";
-break;
-default:
-str_ = ": no error number assigned";
-}
-return (str_);
+    switch (errno)
+    {
+    case EBADCD:
+        str_ = ": can't cd to ";
+        break;
+    case ENOENT:
+        str_ = ": not found";
+        break;
+    case ENOSTRING:
+        str_ = ": bad variable name";
+        break;
+    case EILLEGAL:
+        str_ = ": Illegal number";
+        break;
+    case EWSIZE:
+        str_ = ": invalid number of arguments";
+        break;
+    case ENOBUILTIN:
+        str_ = ": type help for a list of built-ins";
+        break;
+    case EACCES:
+        str_ = ": Permission denied";
+        break;
+    default:
+        str_ = ": no error number assigned";
+    }
+    return (str_);
 }
 
 /**
@@ -75,14 +75,14 @@ return (str_);
 */
 unsigned int countDigits(int num)
 {
-register int digits = 0;
+    register int digits = 0;
 
-while (num > 0)
-{
-digits++;
-num /= 10;
-}
-return (digits);
+    while (num > 0)
+    {
+    digits++;
+    num /= 10;
+    }
+    return (digits);
 }
 
 /**
@@ -92,22 +92,22 @@ return (digits);
 */
 char *itoa(unsigned int num)
 {
-register int digits = 0;
-char *str;
+    register int digits = 0;
+    char *str;
 
-digits += countDigits(num);
-str = malloc(sizeof(char) * (digits + 1));
-if (!str)
-{
-perror("Malloc: failed\n");
-exit(errno);
-}
-insertNullByte(str, digits);
-while (num > 0)
-{
-str[digits - 1] = num % 10 + '0';
-num = num / 10;
-digits--;
-}
-return (str);
+    digits += countDigits(num);
+    str = malloc(sizeof(char) * (digits + 1));
+    if (!str)
+    {
+        perror("Malloc: failed\n");
+        exit(errno);
+    }
+    insertNullByte(str, digits);
+    while (num > 0)
+    {
+        str[digits - 1] = num % 10 + '0';
+        num = num / 10;
+        digits--;
+    }
+    return (str);
 }

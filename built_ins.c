@@ -7,30 +7,30 @@
 */
 _Bool findBuiltIns(config *build)
 {
-register int i = 0;
-type_b get_Built_Ins[] = {
-{"exit", exitFunc},
-{"env", envFunc},
-{"history", historyFunc},
-{"alias", aliasFunc},
-{"cd", cdFunc},
-{"setenv", setenvFunc},
-{"unsetenv", unsetenvFunc},
-{"help", helpFunc},
-{NULL, NULL}
-};
+    register int i = 0;
+    type_b get_Built_Ins[] = {
+        {"exit", exitFunc},
+        {"env", envFunc},
+        {"history", historyFunc},
+        {"alias", aliasFunc},
+        {"cd", cdFunc},
+        {"setenv", setenvFunc},
+        {"unsetenv", unsetenvFunc},
+        {"help", helpFunc},
+        {NULL, NULL}
+    };
 
-while (get_Built_Ins[i].command)
-{
-if (_strcmp(build->args[0], get_Built_Ins[i].command) == 0)
-{
-get_Built_Ins[i].func(build);
-freeArgsAndBuffer(build);
-return (true);
-}
-i++;
-}
-return (false);
+    while (get_Built_Ins[i].command)
+    {
+        if (_strcmp(build->args[0], get_Built_Ins[i].command) == 0)
+        {
+            get_Built_Ins[i].func(build);
+            freeArgsAndBuffer(build);
+            return (true);
+        }
+        i++;
+    }
+    return (false);
 }
 
 /**
@@ -40,30 +40,30 @@ return (false);
 */
 int exitFunc(config *build)
 {
-register int argCount, exitStatus;
+    register int argCount, exitStatus;
 
-argCount = countArgs(build->args);
-if (argCount == 1)
-{
-freeMembers(build);
-if (build->errorStatus)
-exit(build->errorStatus);
-exit(EXIT_SUCCESS);
-}
-else if (argCount > 1)
-{
-exitStatus = _atoi(build->args[1]);
-if (exitStatus == -1)
-{
-errno = EILLEGAL;
-build->errorStatus = 2;
-errorHandler(build);
-return (0);
-}
-freeMembers(build);
-exit(exitStatus);
-}
-return (1);
+    argCount = countArgs(build->args);
+    if (argCount == 1)
+    {
+        freeMembers(build);
+        if (build->errorStatus)
+            exit(build->errorStatus);
+        exit(EXIT_SUCCESS);
+    }
+    else if (argCount > 1)
+    {
+        exitStatus = _atoi(build->args[1]);
+        if (exitStatus == -1)
+        {
+            errno = EILLEGAL;
+            build->errorStatus = 2;
+            errorHandler(build);
+            return (0);
+        }
+        freeMembers(build);
+        exit(exitStatus);
+    }
+    return (1);
 }
 
 /**
@@ -73,11 +73,11 @@ return (1);
 */
 int historyFunc(config *build)
 {
-char *str = "Currently in development\n";
+    char *str = "Currently in development\n";
 
-(void)build;
-write(STDOUT_FILENO, str, _strlen(str));
-return (1);
+    (void)build;
+    write(STDOUT_FILENO, str, _strlen(str));
+    return (1);
 }
 
 /**
@@ -87,9 +87,9 @@ return (1);
 */
 int aliasFunc(config *build)
 {
-char *str = "Currently in development\n";
+    char *str = "Currently in development\n";
 
-(void)build;
-write(STDOUT_FILENO, str, _strlen(str));
-return (1);
+    (void)build;
+    write(STDOUT_FILENO, str, _strlen(str));
+    return (1);
 }

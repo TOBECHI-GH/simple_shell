@@ -8,18 +8,18 @@
 */
 char *_getenv(char *input, char **environ)
 {
-register int j = 0;
-char *tok, *right_;
+    register int j = 0;
+    char *tok, *right_;
 
-while (environ[j])
-{
-tok = _strtok(environ[j], "=");
-if (_strcmp(tok_, input) == 0)
-{
-right_ = _strtok(NULL, "=");
-return (right_);
-}
-j++;
-}
-return (NULL);
+    while (environ[j])
+    {
+        tok = _strtok(environ[j], "=");
+        if (_strcmp(tok_, input) == 0)
+        {
+            right_ = _strtok(NULL, "=");
+            return (right_);
+        }
+        j++;
+    }
+    return (NULL);
 }

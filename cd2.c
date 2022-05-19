@@ -9,29 +9,29 @@
 */
 int updateOld(config *build)
 {
-register int pwd_Index = 0, index = 0;
-static char old[BUFSIZE];
-char *current = NULL;
+    register int pwd_Index = 0, index = 0;
+    static char old[BUFSIZE];
+    char *current = NULL;
 
-_strcat(old, "OLD");
-pwd_Index = searchNode(build->env, "PWD");
-if (pwd_Index == -1)
-{
-return (-1);
-}
-current = getNodeAtIndex(build->env, pwd_Index);
-_strcat(old, current);
-insertNullByte(old, _strlen(current) + 4);
-free(current);
-index = searchNode(build->env, "OLDPWD");
-if (index == -1)
-{
-return (-1);
-}
-deleteNodeAtIndex(&build->env, index);
-addNodeAtIndex(&build->env, index, old);
-insertNullByte(old, 0);
-return (pwd_Index);
+    _strcat(old, "OLD");
+    pwd_Index = searchNode(build->env, "PWD");
+    if (pwd_Index == -1)
+    {
+        return (-1);
+    }
+    current = getNodeAtIndex(build->env, pwd_Index);
+    _strcat(old, current);
+    insertNullByte(old, _strlen(current) + 4);
+    free(current);
+    index = searchNode(build->env, "OLDPWD");
+    if (index == -1)
+    {
+        return (-1);
+    }
+    deleteNodeAtIndex(&build->env, index);
+    addNodeAtIndex(&build->env, index, old);
+    insertNullByte(old, 0);
+    return (pwd_Index);
 }
 
 /**
@@ -42,18 +42,18 @@ return (pwd_Index);
 */
 _Bool updateCur(config *build, int index)
 {
-static char tmp_[BUFSIZE], cwd_[BUFSIZE];
+    static char tmp_[BUFSIZE], cwd_[BUFSIZE];
 
-getcwd(tmp_, BUFSIZE);
-_strcat(cwd_, "PWD=");
-_strcat(cwd_, tmp_);
-if (index > -1)
-{
-deleteNodeAtIndex(&build->env, index);
-addNodeAtIndex(&build->env, index, cwd_);
-} else
-addNodeAtIndex(&build->env, 0, cwd_);
-insertNullByte(tmp_, 0);
-insertNullByte(cwd_, 0);
-return (true);
+    getcwd(tmp_, BUFSIZE);
+    _strcat(cwd_, "PWD=");
+    _strcat(cwd_, tmp_);
+    if (index > -1)
+    {
+        deleteNodeAtIndex(&build->env, index);
+        addNodeAtIndex(&build->env, index, cwd_);
+    } else
+        addNodeAtIndex(&build->env, 0, cwd_);
+    insertNullByte(tmp_, 0);
+    insertNullByte(cwd_, 0);
+    return (true);
 }

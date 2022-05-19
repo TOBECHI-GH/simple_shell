@@ -6,12 +6,12 @@
 */
 void freeMembers(config *build)
 {
-if (build->env)
-freeList(build->env);
-if (build->args)
-freeArgs(build->args);
-if (build->buffer)
-free(build->buffer);
+    if (build->env)
+        freeList(build->env);
+    if (build->args)
+        freeArgs(build->args);
+    if (build->buffer)
+        free(build->buffer);
 }
 
 /**
@@ -20,8 +20,8 @@ free(build->buffer);
 */
 void freeArgsAndBuffer(config *build)
 {
-freeArgs(build->args);
-free(build->buffer);
+    freeArgs(build->args);
+    free(build->buffer);
 }
 
 /**
@@ -30,20 +30,20 @@ free(build->buffer);
 */
 void freeList(linked_l *head)
 {
-linked_l *current_;
-linked_l *tmp_;
+    linked_l *current_;
+    linked_l *tmp_;
 
-if (!head)
-return;
-current_ = head;
-while (current_)
-{
-tmp_ = current_;
-current_ = tmp_->next;
-free(tmp_->string);
-free(tmp_);
-}
-head = NULL;
+    if (!head)
+    return;
+    current_ = head;
+    while (current_)
+    {
+    tmp_ = current_;
+    current_ = tmp_->next;
+    free(tmp_->string);
+    free(tmp_);
+    }
+    head = NULL;
 }
 
 /**
@@ -52,9 +52,9 @@ head = NULL;
 */
 void freeArgs(char **args)
 {
-register uint i = 0;
+    register uint i = 0;
 
-while (args[i])
-free(args[i++]);
-free(args);
+    while (args[i])
+        free(args[i++]);
+    free(args);
 }
